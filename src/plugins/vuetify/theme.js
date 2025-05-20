@@ -1,0 +1,71 @@
+export const staticPrimaryColor = "#3498db";
+export const themes = {
+    light: {
+        dark: false,
+        colors: {
+            primary: staticPrimaryColor,
+            "on-primary": "#fff",
+            info: "#0cb9c5",
+            "on-info": "#fff",
+            success: "#05b187",
+            "on-success": "#fff",
+            accent: "#fc4b6c",
+            "on-accent": "#fff",
+            warning: "#fec90f",
+            "on-warning": "#fff",
+            error: "#fc4b6c",
+            "on-error": "#fff",
+            secondary: "#0cb9c5",
+            "on-secondary": "#fff",
+
+            background: "#f4fafd",
+            "on-background": "#000000",
+            surface: "#ffffff",
+            "on-surface": "#000000",
+
+            "grey-50": "#FAFAFA",
+            "grey-100": "#F5F5F5",
+            "grey-200": "#EEEEEE",
+            "grey-300": "#E0E0E0",
+            "grey-400": "#BDBDBD",
+            "grey-500": "#9E9E9E",
+            "grey-600": "#757575",
+            "grey-700": "#616161",
+            "grey-800": "#424242",
+            "grey-900": "#212121",
+            "grey-light": "#FAFAFA",
+        },
+    },
+    dark: {
+        dark: true,
+        colors: {
+            primary: staticPrimaryColor,
+            info: "#0cb9c5",
+            success: "#05b187",
+            accent: "#fc4b6c",
+            warning: "#fec90f",
+            error: "#fc4b6c",
+            secondary: "#0cb9c5",
+
+            // background: "#060606",
+            background: "#10141b",
+            "on-background": "#E6E6F1",
+            surface: "#252525",
+            "on-surface": "#E6E6F1",
+
+            "grey-50": "#26293A",
+            "grey-100": "#2F3349",
+            "grey-200": "#26293A",
+            "grey-300": "#4A5072",
+            "grey-400": "#5E6692",
+            "grey-500": "#7983BB",
+            "grey-600": "#AAB3DE",
+            "grey-700": "#B6BEE3",
+            "grey-800": "#CFD3EC",
+            "grey-900": "#E7E9F6",
+            "grey-light": "#313246",
+        },
+    },
+};
+
+export default themes;

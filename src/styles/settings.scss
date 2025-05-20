@@ -3,8 +3,13 @@
  *
  * Configures SASS variables and Vuetify overwrites
  */
-
+@use "./scss/font" as _font;
 // https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
+@forward "vuetify/settings" with (
+    // Vô hiệu hóa các gói màu
+    $color-pack: false,
+    // Vô hiệu hóa các lớp tiện ích
+    $utilities: false,
+    //
+    $body-font-family: _font.$font-family-custom !default
+);
