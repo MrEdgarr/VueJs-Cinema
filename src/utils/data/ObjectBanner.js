@@ -4,7 +4,7 @@ const itemBanner = [
         name: "Nhím Sonic 3",
         imageLg:
             "https://cdn.galaxycine.vn/media/2025/3/25/dia-dao-1_1742874075591.jpg",
-        iamgeSm:
+        iamgexs:
             "https://cdn.galaxycine.vn/media/2025/3/25/dia-dao-3_1742874081460.jpg",
     },
     {
@@ -12,7 +12,7 @@ const itemBanner = [
         name: "Những Kẻ Bất Bại 2: Pantera",
         imageLg:
             "https://cdn.galaxycine.vn/media/2025/3/17/snow-white-3_1742205081742.jpg",
-        iamgeSm:
+        iamgexs:
             "https://cdn.galaxycine.vn/media/2025/3/17/snow-white-2_1742205086313.jpg",
     },
     {
@@ -20,7 +20,7 @@ const itemBanner = [
         name: "LEMBAYUNG: OAN HỒN SẢN PHỤ",
         imageLg:
             "https://cdn.galaxycine.vn/media/2025/3/21/ll-2048_1742539590508.jpg",
-        iamgeSm:
+        iamgexs:
             "https://cdn.galaxycine.vn/media/2025/3/21/ll-750_1742539594369.jpg",
     },
     {
@@ -28,7 +28,7 @@ const itemBanner = [
         name: "MUFASA: VUA SƯ TỬ",
         imageLg:
             "https://cdn.galaxycine.vn/media/2025/3/14/adl-2048_1741934700847.jpg",
-        iamgeSm:
+        iamgexs:
             "https://cdn.galaxycine.vn/media/2025/3/14/adl-750_1741934700977.jpg",
     },
 ];

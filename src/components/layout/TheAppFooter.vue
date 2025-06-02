@@ -2,7 +2,7 @@
     <v-footer class="d-flex flex-column bg-surface">
         <v-container>
             <div class="grid grid-cols-12">
-                <div class="md:col-span-3 col-span-12 sm:col-span-6 pb-5">
+                <div class="md:col-span-3 col-span-12 xs:col-span-6 pb-5">
                     <div class="!text-base !font-semibold">
                         <h3>GIỚI THIỆU</h3>
                     </div>
@@ -27,7 +27,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="md:col-span-3 col-span-12 sm:col-span-6 pb-5">
+                <div class="md:col-span-3 col-span-12 xs:col-span-6 pb-5">
                     <div class="!text-base !font-semibold">
                         <h3>GÓC ĐIỆN ẢNH</h3>
                     </div>
@@ -52,7 +52,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="md:col-span-3 col-span-12 sm:col-span-6 pb-5">
+                <div class="md:col-span-3 col-span-12 xs:col-span-6 pb-5">
                     <div class="!text-base !font-semibold">
                         <h3>HỖ TRỢ</h3>
                     </div>
@@ -77,7 +77,7 @@
                         </span>
                     </div>
                 </div>
-                <div class="md:col-span-3 col-span-12 sm:col-span-6 pb-5">
+                <div class="md:col-span-3 col-span-12 xs:col-span-6 pb-5">
                     <div>
                         <v-img src="@/assets/1.png" class="w-30"></v-img>
                         <div class="my-5">
@@ -109,19 +109,19 @@
                         </div>
                         <v-img
                             src="http://online.gov.vn/PublicImages/2015/08/27/11/20150827110756-dathongbao.png"
-                            :width="$vuetify.display.xs ? '100' : '150'"
+                            :width="xs ? '100' : '150'"
                         ></v-img>
                     </div>
                 </div>
             </div>
-            <v-divider class="mt-10" color="gray-500"></v-divider>
+            <v-divider class="mt-10 opacity-10"></v-divider>
             <div class="pt-10">
                 <h1 class="font-black text-3xl font-sans text-center">
                     <v-img src="@/assets/1.png" class="w-30 m-auto"></v-img>
                 </h1>
-                <div class="px-4 py-2 text-center md:text-base text-xs">
+                <div class="px-4 py-2 text-center text-xs">
                     <p>
-                        © 2022 The Movie. Template design ( November
+                        © 2025 The Movie. Template design ( May
                         {{ new Date().getFullYear() }} )
                     </p>
                     <v-spacer></v-spacer>
@@ -131,6 +131,9 @@
     </v-footer>
 </template>
 
-<script></script>
+<script setup>
+import { useDisplay } from "vuetify";
+const { xs } = useDisplay();
+</script>
 
 <style lang="scss"></style>

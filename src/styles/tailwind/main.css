@@ -3,9 +3,7 @@
 @theme {
     /* Vô hiệu hóa màu mặc định */
     --color-*: initial;
-    /* Font logo */
-    --font-logo: Work Sans, sans-serif;
-    /* Color  */
+    /* Variable Color  */
     --color-primary: rgb(var(--v-theme-primary));
     --color-info: rgb(var(--v-theme-info));
     --color-success: rgb(var(--v-theme-success));
@@ -27,12 +25,19 @@
     --color-grey-900: rgb(var(--v-theme-grey-900));
     --color-grey-light: rgb(var(--v-theme-grey-light));
 
-    --my-gradient: 90deg, rgb(var(--v-theme-background)) 5%,
+    /* gradient */
+    --gradient-heading: 90deg, rgb(var(--v-theme-background)) 5%,
         rgb(var(--v-theme-primary)) 50%, rgb(var(--v-theme-background)) 95%;
-
+    --gradient-seat: repeating-linear-gradient(
+        45deg,
+        hsla(0, 0%, 60%, 0.4),
+        hsla(0, 0%, 60%, 0.4) 10px,
+        hsla(0, 0%, 60%, 0.6) 0,
+        hsla(0, 0%, 60%, 0.6) 20px
+    );
     /* breakpoint */
-    --breakpoint-xs: 37.5rem;
-    --breakpoint-md: 60rem;
-    --breakpoint-lg: 80rem;
-    --breakpoint-xl: 120rem;
+    --breakpoint-xs: 37.5rem; /*600px*/
+    --breakpoint-md: 60rem; /*960px*/
+    --breakpoint-lg: 80rem; /*1280px*/
+    --breakpoint-xl: 120rem; /*1920*/
 }

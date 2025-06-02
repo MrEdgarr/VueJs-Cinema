@@ -11,6 +11,7 @@ import { fileURLToPath, URL } from "node:url";
 
 // Tailwind
 import tailwindcss from "@tailwindcss/vite";
+
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -24,6 +25,9 @@ export default defineConfig({
             styles: {
                 configFile: "src/styles/settings.scss",
             },
+            defaultAssets: {
+                font: false, // Tắt auto-load font
+            },
         }),
         Components(),
         AutoImport({
@@ -35,6 +39,7 @@ export default defineConfig({
             ],
             eslintrc: {
                 enabled: true,
+                filepath: "./.eslintrc-auto-import.json",
             },
             vueTemplate: true,
         }),
@@ -42,6 +47,7 @@ export default defineConfig({
     ],
     optimizeDeps: {
         exclude: ["vuetify", "vue-router"],
+        entries: ["./src/**/*.vue"],
     },
     define: { "process.env": {} },
     resolve: {
@@ -50,9 +56,9 @@ export default defineConfig({
         },
         extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
     },
-    server: {
-        port: 3000,
-    },
+    // server: {
+    //     port: 3000,
+    // },
     css: {
         preprocessorOptions: {
             sass: {
@@ -63,4 +69,20 @@ export default defineConfig({
             },
         },
     },
+    build: {
+        chunkSizeWarningLimit: 5000,
+        rollupOptions: {
+            treeshake: {
+                preset: "recommended",
+                moduleSideEffects: false,
+            },
+        },
+        // minify: true,
+        // sourcemap: false, // Tắt sourcemap cho production
+    },
+    // server: {
+    //     hmr: {
+    //         overlay: false, // Tắt overlay lỗi để tăng tốc
+    //     },
+    // },
 });

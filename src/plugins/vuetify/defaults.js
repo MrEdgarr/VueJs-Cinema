@@ -52,6 +52,7 @@ export default {
             lastIcon: "bx-chevrons-right",
         },
     },
+    //
     VList: {
         color: "primary",
         density: "compact",
@@ -59,9 +60,11 @@ export default {
             density: "compact",
         },
         VListItem: {
-            ripple: false,
             VAvatar: {
                 size: 38,
+            },
+            VListItemTitle: {
+                class: "text-sm font-medium",
             },
         },
     },
@@ -98,10 +101,10 @@ export default {
         density: "comfortable",
         hideDetails: "auto",
     },
+    //
     VSelect: {
         variant: "outlined",
-        color: "primary",
-        density: "comfortable",
+        density: "compact",
         hideDetails: "auto",
         VChip: {
             label: true,
@@ -113,10 +116,10 @@ export default {
         color: "disabled",
         emptyIcon: "bx-bxs-star",
     },
-
+    //
     VTextField: {
         variant: "outlined",
-        density: "comfortable",
+        density: "compact",
         color: "primary",
         hideDetails: "auto",
     },
@@ -158,10 +161,5 @@ export default {
 
     VNavigationDrawer: {
         touchless: true,
-    },
-    VList: {
-        VListItemTitle: {
-            class: "!text-sm !font-medium",
-        },
     },
 };

@@ -17,11 +17,11 @@
         <swiper-slide v-for="(value, index) in itemBanner" :key="index">
             <!-- <router-link> -->
             <v-img class="!hidden md:!block" :src="value.imageLg" cover />
-            <v-img class="md:!hidden" :src="value.iamgeSm" />
+            <v-img class="md:!hidden" :src="value.iamgexs" />
             <!-- </router-link> -->
         </swiper-slide>
 
-        <div class="hidden sm:block">
+        <div class="hidden xs:block">
             <div
                 class="prevBanner bg-background/50 h-8 w-8 !grid place-items-center rounded-lg absolute top-1/2 -translate-y-1/2 z-10 left-4 rotate-45 cursor-pointer"
             >

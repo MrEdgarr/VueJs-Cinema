@@ -3,6 +3,8 @@
     <v-main>
         <router-view />
     </v-main>
+    <Login />
+    <Register />
     <TheAppFooter />
 </template>
 

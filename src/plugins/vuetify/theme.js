@@ -18,9 +18,9 @@ export const themes = {
             secondary: "#0cb9c5",
             "on-secondary": "#fff",
 
-            background: "#f4fafd",
+            background: "#fff",
             "on-background": "#000000",
-            surface: "#ffffff",
+            surface: "#F7F8FA",
             "on-surface": "#000000",
 
             "grey-50": "#FAFAFA",
