@@ -82,10 +82,6 @@
                                         "
                                     >
                                         15:00
-                                        <strong
-                                            class="xs:text-[10px] text-[8px] text-primary"
-                                            >~17:00</strong
-                                        >
                                     </v-btn>
                                 </div>
                             </div>

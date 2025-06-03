@@ -146,7 +146,7 @@ const links = ref([
     // },
     {
         name: "Lịch chiếu",
-        nameRouter: "HomeRedirect",
+        nameRouter: "showtimeRedirect",
         icon: "mdi-calendar-month-outline",
     },
     {

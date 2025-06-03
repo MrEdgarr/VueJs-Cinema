@@ -6,13 +6,13 @@
                         rgba(31.5, 31.5, 31.5, 0.84) 50%,
                         rgba(31.5, 31.5, 31.5, 0.84) 100%"
             class="bg-center"
-            :style="`background: url('https://cdn.galaxycine.vn/media/2025/5/13/gravity-750_1747131330170.jpg')`"
+            :style="`background: url(${movie?.backdrop})`"
         >
             <v-container>
                 <div class="grid grid-cols-1 md:grid-cols-5 md:gap-5">
                     <div class="flex justify-center">
                         <v-img
-                            src="https://cdn.galaxycine.vn/media/2025/5/13/gravity-500_1747131330898.jpg"
+                            :src="movie?.poster"
                             :max-width="xs ? 100 : 150"
                             max-height="225"
                             class="rounded-lg"
@@ -21,10 +21,10 @@
                     <div class="md:col-span-4 md:pt-0 pt-2.5 text-grey-100">
                         <div class="mb-2.5 md:text-left text-center">
                             <p class="xs:text-2xl text-xl">
-                                Cuộc Chiến Không Trọng Lực
+                                {{ movie?.name }}
                             </p>
                             <p class="text-grey-400 xs:text-sm text-xs">
-                                Chính kịch, Gay cấn, Khoa học - Viễn tưởng
+                                {{ movie?.genres }}
                             </p>
                         </div>
                         <div>
@@ -46,20 +46,16 @@
                                     Trailer
                                 </v-btn>
                             </div>
-                            <div class="py-2.5">
-                                <p class="xs:text-sm text-xs">
-                                    {{ displayedText }}
-                                    <span
-                                        class="text-primary cursor-pointer"
-                                        @click="loadMore"
-                                    >
-                                        {{
-                                            showMoreButton
-                                                ? "...Xem thêm"
-                                                : "Thu gọn"
-                                        }}</span
-                                    >
-                                </p>
+                            <div class="py-2.5 xs:text-sm text-xs">
+                                <span :class="{ 'line-clamp-2': !expanded }">
+                                    {{ movie?.describe }}
+                                </span>
+                                <span
+                                    class="text-primary cursor-pointer"
+                                    @click="expanded = !expanded"
+                                >
+                                    {{ expanded ? "Thu gọn" : "Xem thêm" }}
+                                </span>
                             </div>
                             <div class="grid grid-cols-1 grid-cols-3">
                                 <div
@@ -72,7 +68,12 @@
                                         Khởi chiếu
                                     </span>
                                     <br />
-                                    <span> 16/05/2025 </span>
+                                    <span>
+                                        {{
+                                            formatDateTime(movie?.releases)
+                                                ?.formatDate
+                                        }}
+                                    </span>
                                 </div>
                                 <div
                                     class="md:text-left text-center xs:text-sm text-xs"
@@ -86,7 +87,7 @@
                                         Thời lượng
                                     </span>
                                     <br />
-                                    <span> 91 phút </span>
+                                    <span> {{ movie?.duration }}phút </span>
                                 </div>
                                 <div
                                     class="md:text-left text-center xs:text-sm text-xs"
@@ -100,7 +101,7 @@
                                         Giới hạn tuổi
                                     </span>
                                     <br />
-                                    <span> 13+ </span>
+                                    <span> {{ movie?.cens }} </span>
                                 </div>
                             </div>
                         </div>
@@ -111,26 +112,33 @@
     </div>
 </template>
 <script setup>
+import { useRoute } from "vue-router";
+const route = useRoute();
+import { movieAppStore } from "@/stores/modules/movieStore";
+const movieStore = movieAppStore();
 import { useDisplay } from "vuetify";
 const { xs } = useDisplay();
+import { formatDateTime } from "@/utils/format-date";
 const isLoading = ref(false);
+const movie = ref(null);
+const expanded = ref(false);
 
-const fullText = ref(
-    `Tiến sĩ Ryan Stone, một kỹ sư y tế xuất sắc trong nhiệm vụ Tàu con thoi đầu tiên của cô, cùng với phi hành gia kỳ cựu Matt Kowalsky chỉ huy chuyến bay cuối cùng trước khi nghỉ hưu. Nhưng trên một chuyến đi bộ ngoài không gian dường như thường lệ, thảm họa đã ập đến. Tàu con thoi bị phá hủy, khiến Stone và Kowalsky hoàn toàn bị trói buộc vào nhau và rơi vào bóng tối của không gian. Sự im lặng chói tai cho họ biết họ đã mất bất kỳ liên kết nào với Trái đất và bất kỳ cơ hội giải cứu nào. Khi nỗi sợ hãi chuyển sang hoảng sợ, mỗi luồng không khí sẽ ăn hết lượng oxy ít ỏi còn lại. Nhưng cách duy nhất về nhà có thể là đi xa hơn vào khoảng không gian rộng lớn đáng sợ.`
-);
-const displayedChars = ref(200);
-const displayedText = computed(() => {
-    return fullText.value.length > displayedChars.value
-        ? fullText.value.substring(0, displayedChars.value)
-        : fullText.value;
-});
-const showMoreButton = computed(() => {
-    return fullText.value.length > displayedChars.value;
-});
-const loadMore = () => {
-    fullText.value.length > displayedChars.value
-        ? (displayedChars.value = fullText.value.length)
-        : (displayedChars.value = 200);
+const fetchData = async () => {
+    isLoading.value = true;
+    try {
+        const _id = route.params.id;
+        console.log(_id);
+        await movieStore.fetchAll();
+        movie.value = movieStore.movies.filter((item) => item.id == _id)[0];
+        console.log(movie.value);
+        isLoading.value = false;
+    } catch (error) {
+        console.log(error);
+        isLoading.value = false;
+    }
 };
+onMounted(() => {
+    fetchData();
+});
 </script>
-<style lang=""></style>
+<style lang="scss" scoped></style>

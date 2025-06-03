@@ -9,22 +9,35 @@ export const routes = [
                 component: () => import("@/pages/index.vue"),
             },
             {
-                path: "movie/:id",
+                path: "movies",
                 name: "MovieRedirect",
-                component: () => import("@/pages/movieDetail"),
-                redirect: { name: "MovieDetailRedirect" },
                 children: [
                     {
                         path: "",
-                        name: "MovieDetailRedirect",
-                        component: () =>
-                            import("@/views/home/movie/MovieContent.vue"),
+                        name: "showtimeRedirect",
+                        component: () => import("@/pages/showtime"),
                     },
                     {
-                        path: "",
-                        name: "SeatRedirect",
-                        component: () =>
-                            import("@/views/home/movie/MovieSeat.vue"),
+                        path: ":id",
+                        name: "MovieDetailRedirect",
+                        component: () => import("@/pages/movieDetail"),
+                        redirect: { name: "SchudeleRedirect" },
+                        children: [
+                            {
+                                path: "",
+                                name: "SchudeleRedirect",
+                                component: () =>
+                                    import(
+                                        "@/views/home/movie/MovieContent.vue"
+                                    ),
+                            },
+                            {
+                                path: "",
+                                name: "SeatRedirect",
+                                component: () =>
+                                    import("@/views/home/movie/MovieSeat.vue"),
+                            },
+                        ],
                     },
                 ],
             },

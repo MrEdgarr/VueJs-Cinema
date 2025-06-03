@@ -1,116 +1,61 @@
 <template>
-    <v-container
-        class="d-flex flex-column align-center justify-center"
-        style="height: 100vh"
-    >
-        <v-card width="400" elevation="10" class="pa-6 text-center">
-            <v-card-title class="text-h4 mb-4">
-                Đồng hồ đếm ngược
-            </v-card-title>
+    <v-card class="mx-auto" max-width="800">
+        <v-card-title>Văn bản có thể mở rộng</v-card-title>
 
-            <v-progress-circular
-                :size="200"
-                :width="15"
-                :model-value="progress"
+        <v-card-text>
+            <div :class="{ 'text--truncated': !expanded }">
+                {{ longText }}
+            </div>
+
+            <v-btn
+                @click="expanded = !expanded"
+                text
                 color="primary"
-                class="mb-6"
+                class="mt-2"
             >
-                <div class="text-h3">{{ formattedTime }}</div>
-            </v-progress-circular>
-
-            <v-card-actions class="justify-center">
-                <v-btn
-                    color="primary"
-                    size="large"
-                    @click="startCountdown"
-                    :disabled="isRunning"
-                    prepend-icon="mdi-play"
-                >
-                    Bắt đầu
-                </v-btn>
-
-                <v-btn
-                    color="secondary"
-                    size="large"
-                    @click="pauseCountdown"
-                    :disabled="!isRunning"
-                    prepend-icon="mdi-pause"
-                >
-                    Tạm dừng
-                </v-btn>
-
-                <v-btn
-                    color="error"
-                    size="large"
-                    @click="resetCountdown"
-                    :disabled="!isRunning && remainingTime === initialTime"
-                    prepend-icon="mdi-refresh"
-                >
-                    Đặt lại
-                </v-btn>
-            </v-card-actions>
-        </v-card>
-
-        <v-snackbar v-model="showTimeoutAlert" color="error" timeout="2000">
-            Hết giờ!
-        </v-snackbar>
-    </v-container>
+                {{ expanded ? "Thu gọn" : "Xem thêm" }}
+                <v-icon right>
+                    {{ expanded ? "mdi-chevron-up" : "mdi-chevron-down" }}
+                </v-icon>
+            </v-btn>
+        </v-card-text>
+    </v-card>
 </template>
 
-<script setup>
-import { ref, computed, onUnmounted } from "vue";
+<script>
+export default {
+    data() {
+        return {
+            expanded: false,
+            longText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor,
+      nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl
+      nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl
+      aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget
+      ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget
+      nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl,
+      eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies
+      tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.
 
-const initialTime = 10; // 10 phút tính bằng giây
-const remainingTime = ref(initialTime);
-const isRunning = ref(false);
-const showTimeoutAlert = ref(false);
-let timer = null;
+      Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur non nulla
+      sit amet nisl tempus convallis quis ac lectus. Cras ultricies ligula sed
+      magna dictum porta. Vestibulum ac diam sit amet quam vehicula elementum
+      sed sit amet dui. Curabitur aliquet quam id dui posuere blandit.
 
-// Định dạng thời gian MM:SS
-const formattedTime = computed(() => {
-    const minutes = Math.floor(remainingTime.value / 60);
-    const seconds = remainingTime.value % 60;
-    return `${minutes.toString().padStart(2, "0")}:${seconds
-        .toString()
-        .padStart(2, "0")}`;
-});
-
-// Tính % tiến trình
-const progress = computed(() => {
-    return (remainingTime.value / initialTime) * 100;
-});
-
-const startCountdown = () => {
-    if (isRunning.value) return;
-
-    isRunning.value = true;
-    timer = setInterval(() => {
-        remainingTime.value--;
-        if (remainingTime.value <= 0) {
-            clearInterval(timer);
-            isRunning.value = false;
-            showTimeoutAlert.value = true;
-        }
-    }, 1000);
+      Pellentesque in ipsum id orci porta dapibus. Nulla quis lorem ut libero
+      malesuada feugiat. Curabitur arcu erat, accumsan id imperdiet et, porttitor
+      at sem. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.
+      Sed porttitor lectus nibh.`,
+        };
+    },
 };
-
-const pauseCountdown = () => {
-    clearInterval(timer);
-    isRunning.value = false;
-};
-
-const resetCountdown = () => {
-    pauseCountdown();
-    remainingTime.value = initialTime;
-};
-
-// Tự động bắt đầu khi component được mount
-onMounted(() => {
-    startCountdown();
-});
-
-// Dọn dẹp khi component unmount
-onUnmounted(() => {
-    clearInterval(timer);
-});
 </script>
+
+<style>
+.text--truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
